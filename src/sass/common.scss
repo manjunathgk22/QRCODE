@@ -1,0 +1,97 @@
+@import './placeholders.scss';
+@import './colors.scss';
+*{
+    font-family: 'SourceSansPro';
+    box-sizing: border-box;
+    color: $text;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: $bgGrey;
+}
+#root{
+    height:100%;
+    width: 100%;
+}
+.flex{
+    display: flex;
+}
+.one-flex{
+    display: flex;
+    flex: 1;
+}
+.full-height{
+    height: 100%;
+}
+.align-center{
+    justify-content: center;
+    align-items: center;
+}
+.padding-md{
+    padding: 15px;
+}
+.padding-sm{
+    padding: 10px;
+}
+.padding-lg{
+    padding: 30px;
+}
+.padding-bottom-lg{
+    padding-bottom: 30;
+}
+.margin-top-lg{
+    margin-top: 30px;
+}
+.margin-top-md{
+    margin-top: 15px;
+}
+.margin-bottom-lg{
+    margin-bottom: 30px;
+}
+.margin-bottom-md{
+    margin-bottom: 15px;
+}
+.margin-right-md{
+    margin-right: 15px;
+}
+.margin-right-lg{
+    margin-right: 30px;
+}
+.shadow{
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+.flex-column{
+    flex-direction: column;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.width-md{
+    width: 80%;
+    @media  (max-width: 1200px){
+        width: 95%;
+    }
+}
+.margin-auto{
+    margin: 0 auto;
+}
+.text-center{
+    text-align: center;
+}
+.text-light{
+    color: $textLight;
+}
+.pointer{
+    cursor: pointer;
+}
+.text-lg{
+    font-size: 20px;
+}
+.bold{
+    font-weight: 600;
+}
+.no-top-margin{
+    margin-top: 0;
+}
