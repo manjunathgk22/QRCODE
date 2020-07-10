@@ -4,9 +4,7 @@ class Login extends Component {
     render({}, {}) {
         return (
             <div>
-                kasjdnaksjdbahsgd
-                asdjkhbasdjasd
-                asdkasbd
+                Login
             </div>
         );
     }
