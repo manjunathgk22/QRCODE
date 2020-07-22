@@ -1,6 +1,7 @@
-import { Suspense, lazy } from 'preact/compat';
+import { Suspense, lazy, useEffect } from 'preact/compat';
 import { Switch, Route, Redirect } from 'react-router-dom'
-const Login = lazy(() => import('./Login'));
+import BaseStore from '../stores/BaseStore';
+const Login = lazy(() => import('./Login/Login'));
 const Dashboard = lazy(() => import('./Dashboard'));
   
   //To check if the requested path needs authentication
@@ -19,6 +20,11 @@ const Dashboard = lazy(() => import('./Dashboard'));
 
 const Main = (props) => {
   
+  useEffect(() => {
+    if(localStorage.getItem('LOGINDATA')){
+      BaseStore.LOGINDATA = JSON.parse(localStorage.getItem('LOGINDATA'))
+    }
+  }, [])
   return(
  
     <Suspense fallback={<div style={{display:"flex", justifyContent:"center", alignItems:"center"}}><p>Loading...</p></div>}>

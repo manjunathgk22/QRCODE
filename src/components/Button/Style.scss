@@ -1,0 +1,50 @@
+@import '../../sass/Base.scss';
+.btn{
+    @extend %btn;
+    &:hover{
+        text-decoration: none;
+        box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
+    }
+    &:disabled{
+        background: $text;
+        cursor: not-allowed;
+    }
+}
+.btn-positive{
+    @extend %btn;
+    @extend %ripple-effect;
+    color: #FFF;
+    background-color: $blue;
+    &:hover{
+        text-decoration: none;
+        box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
+        background-color: darken($blue, 12% );
+    }
+    &:disabled{
+        background: $text;
+        cursor: not-allowed;
+    }
+}
+.btn-red{
+    @extend .btn-positive;
+    background-color: $red;
+    &:hover{
+        background-color: darken($red, 12% );
+        &:disabled{
+            background: $text;
+            cursor: not-allowed;
+        }
+    }
+    
+}
+.btn-positive-green{
+    @extend .btn-positive;
+    background-color: $green;
+    &:hover{
+        background-color: darken($green, 12% );
+        &:disabled{
+            background: $text;
+            cursor: not-allowed;
+        }
+    }
+}

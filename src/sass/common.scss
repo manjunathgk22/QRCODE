@@ -59,6 +59,9 @@ body,html{
 .margin-right-lg{
     margin-right: 30px;
 }
+.margin-right-sm{
+    margin-right: 10px;
+}
 .shadow{
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
@@ -94,4 +97,39 @@ body,html{
 }
 .no-top-margin{
     margin-top: 0;
+}
+.no-vertical-margin{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.fixed{
+    position: fixed;
+}
+.full-width-height-viewport{
+    height: 100vh;
+    width: 100vw;
+}
+.justifycontent-right{
+    justify-content: flex-end;
+}
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.float-right{
+    float: right;
+}
+.space-between{
+    justify-content: space-between;
+}
+.inline-block{
+    display: inline-block;
+}
+.right-padding-sm{
+    padding-right: 10px;
+}
+.brand-color-text{
+    color: $purple;
 }

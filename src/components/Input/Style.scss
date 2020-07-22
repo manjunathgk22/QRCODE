@@ -1,0 +1,47 @@
+@import '../../sass/Base.scss';
+
+input {
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    &:focus{
+        outline: none;
+    }
+    &:focus ~ .focus-border {
+        width: 100%;
+        transition: 0.4s;
+        left: 0;
+    }
+    &.bordered:focus ~ .focus-border {
+        width: 0;
+        transition: 0.4s;
+        left: 0;
+    }
+    &.bordered:focus {
+        border: 1px solid $blue;
+        transition: 0.4s;
+    }
+}
+.button-wrapper{
+    display:  inline-block;
+    position:relative;
+}
+.effect-2  {
+    border: 0;
+    padding: 7px 0;
+    border-bottom: 1px solid #ccc;
+    &.bordered{
+        border: 1px solid #ccc;
+        padding-left: 10px;
+    }
+}
+.focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #3399ff;
+    transition: 0.4s;
+}

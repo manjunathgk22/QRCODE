@@ -1,0 +1,11 @@
+@import '../../sass/Base.scss';
+
+.image-icon{
+    height: 50px;
+    width: 50px;
+    align-self: center;
+    border-radius: 50%;
+}
+.error-message{
+    color: $red;
+}

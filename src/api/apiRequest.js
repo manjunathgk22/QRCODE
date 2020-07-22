@@ -62,7 +62,7 @@ const STATUS = {
   }
 
 function loginSubmit(json){
-    return userApiClient.post('api/manual-fulfilment/api/login/', json)
+    return userApiClient.post('public/login/', json)
 }
 
 

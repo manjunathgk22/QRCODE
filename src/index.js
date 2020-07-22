@@ -6,6 +6,9 @@ import Navigation from './util/Navigation';
 import './sass/Base.scss';
 import './sass/fonts.scss';
 import register from './registerServoceWorker'
+import {Provider} from "mobx-react";
+import LoginStore from './Stores/LoginStore'
+
 
 // Register SW
 if(process.env.NODE_ENV === 'production')
@@ -13,7 +16,10 @@ if(process.env.NODE_ENV === 'production')
 
 render(
   <HashRouter ref = {(navRef)=>{Navigation.setNavigator(navRef)}}>
+    <Provider 
+    loginStore = {new LoginStore()}>
       <App />
+    </Provider>
   </HashRouter>,
   document.getElementById("root")
 );
