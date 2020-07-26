@@ -26,7 +26,7 @@ const MenuCategoryAddPopup = (props) => {
                         <Input placeholder="Enter Description" type="textArea" style={{width:300, maxWidth:400, maxHeight:250}} value={props.menuStore.menuaddCategory.description} onChange={({target})=>{props.menuStore.menuaddCategory.description = target.value}}/>
                     </div>
                     <div className="margin-top-lg flex align-center">
-                        <Button type="button" disabled={props.menuStore.menuAddLoading || (!props.menuStore.menuaddCategory.name)}  onClick= { apiRequest.apiDebounce(props.menuStore.createMenuCategory)} text="Add" type={AppConstant.POSITIVE} />
+                        <Button type="button" disabled={props.menuStore.menuAddLoading || (!props.menuStore.menuaddCategory.name)}  onClick= { ()=>{props.menuStore.createMenuCategory()}} text="Add" type={AppConstant.POSITIVE} />
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import BaseStore from '../Stores/BaseStore'
+import apiRequest from '../api/apiRequest'
 
 const getToken = ()=>{
     if(localStorage.getItem('LOGINDATA')){
@@ -13,6 +14,20 @@ const getToken = ()=>{
     }
 }
 
+const imageUpload = async(file)=>{
+    try {
+        const form_data = new FormData();
+        const file_data = file;
+        form_data.append("file", file_data);
+        const response = await apiRequest.uploadImage(form_data)
+        return response
+    } catch (error) {
+        console.log(error.toString());
+    }
+    
+}
+
 export default {
-    getToken
+    getToken,
+    imageUpload
 }

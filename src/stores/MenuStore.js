@@ -21,6 +21,7 @@ export default class MenuStore extends BaseStore{
     @observable showMenuCategoryShowPopup = false
 
     @observable menuAddLoading = false;
+    @observable photoLoading = false
     // ADD form data
     @observable menuadd = {}
     @observable menuaddCategory = {}
@@ -210,7 +211,7 @@ export default class MenuStore extends BaseStore{
                 this.menuData = this.menuData.map((menu, i)=>{
                     if(i === index){
                         this.selectedMenuIndex = index;
-                        
+                        this.selectedMenuCategoryIndex = 0;
                     }else{
                         
                     }
@@ -229,15 +230,15 @@ export default class MenuStore extends BaseStore{
                 this.menuData = [...this.menuData]
                 break;
             case 'MENUITEM':
-                this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems.map((menu, i)=>{
-                    if(i === index){
+                // this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems.map((menu, i)=>{
+                //     if(i === index){
                         
-                        this.selectedMenuCategoryIndex = index;
-                    }else{
+                //         this.selectedMenuCategoryIndex = index;
+                //     }else{
                         
-                    }
-                })
-                this.menuData = [...this.menuData]
+                //     }
+                // })
+                // this.menuData = [...this.menuData]
                 break;
         }
     }
@@ -347,6 +348,21 @@ export default class MenuStore extends BaseStore{
         }
     }
 
+    @action addPhotosofMenuItem = async (target)=>{
+        this.photoLoading = true;
+        if(!this.menuaddItem.images){
+            this.menuaddItem.images = []
+        }
+        for(let i=0; i<target.files.length;i++){
+            const response = await AppUtility.imageUpload(target.files[i])
+            if(response.status === apiRequest.STATUS.SUCCESS){
+                this.menuaddItem.images = [...this.menuaddItem.images, response.data.filename];
+                this.menuaddItem = {...this.menuaddItem}
+            }
+        }
+        this.photoLoading = false;
+    }
+
     @action handleShowMenuPopup = (index)=>{
         this.qrcodesForpopup = this.qrcodes.filter(qrcode => {
             if(qrcode.menu_id === this.menuData[index].id){
@@ -373,7 +389,8 @@ export default class MenuStore extends BaseStore{
             name: this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems[index].name,
             id: this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems[index].id,
             description: this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems[index].description,
-            cost: +this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems[index].cost
+            cost: +this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems[index].cost,
+            images: this.menuData[this.selectedMenuIndex].menucategories[this.selectedMenuCategoryIndex].menuitems[index].images
         }
         this.showMenuItemShowPopup = true
     }

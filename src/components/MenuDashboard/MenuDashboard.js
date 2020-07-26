@@ -29,7 +29,7 @@ const MenuDashboard = (props) => {
                             <div className="flex">
                                 <div className=" one-flex flex-column margin-right-lg gray-bg padding-md border-radius-sm fit-content relative padding-bottom-lg">
                                     <h4 className="no-top-margin padding-bottom-md ">Menu</h4>
-                                    <p className="add-button no-bottom-margin text-light" onClick={()=>{props.menuStore.handleShowMenuAddpopup()}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu</p>
+                                    <p className="add-button no-bottom-margin text-light" onClick={()=>{ props.menuStore.handleShowMenuAddpopup()}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu</p>
                                     <div className="menu-column">
                                     {
                                         props.menuStore.menuData.map((menu, index) =><Card onClick={()=>{props.menuStore.handleCardClick('MENU', index)}} classname={`padding-md margin-bottom-md shadow-light menucard ${index === props.menuStore.selectedMenuIndex? 'active':''}`}>
@@ -51,7 +51,7 @@ const MenuDashboard = (props) => {
                                 </div>
                                 <div className=" one-flex flex-column margin-right-lg gray-bg padding-md border-radius-sm fit-content relative padding-bottom-lg">
                                     <h4 className="no-top-margin padding-bottom-md ">Menu Category</h4>
-                                    <p className="add-button no-bottom-margin text-light" onClick={()=>{ props.menuStore.showMenuCategoryAddPopup = true}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu Category</p>
+                                    <p className="add-button no-bottom-margin text-light" onClick={()=>{props.menuStore.menuaddCategory = {}; props.menuStore.showMenuCategoryAddPopup = true}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu Category</p>
                                     <div className="menu-column">
                                         
                                     {
@@ -73,7 +73,7 @@ const MenuDashboard = (props) => {
                                 </div>
                                 <div className=" one-flex flex-column margin-right-lg gray-bg padding-md border-radius-sm fit-content relative padding-bottom-lg">
                                     <h4 className="no-top-margin padding-bottom-md ">Menu Item</h4> 
-                                    <p className="add-button no-bottom-margin text-light" onClick={()=>{ props.menuStore.showMenuItemAddPopup = true}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu Item</p>
+                                    <p className="add-button no-bottom-margin text-light" onClick={()=>{props.menuStore.menuaddItem = {};  props.menuStore.showMenuItemAddPopup = true}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu Item</p>
                                     <div className="menu-column">
                                     {
                                         props.menuStore.menuData.length && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories.length &&  props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems.map((menuItem, index) =><Card onClick={()=>{props.menuStore.handleCardClick('MENUITEM', index)}} classname={`padding-md margin-bottom-md shadow-light menucard ${menuItem.selected? 'active':''}`}>

@@ -27,7 +27,7 @@ const MenuAddPopup = (props) => {
                             <DropdownMultiSelect onChange = {props.menuStore.onqrcodechange} options={props.menuStore.qrcodesForpopup} />
                         </div>
                         <div className="margin-top-lg flex align-center">
-                            <Button type="button" disabled={props.menuStore.menuAddLoading || (!props.menuStore.menuadd.name)}  onClick= { apiRequest.apiDebounce(props.menuStore.handleMenuAdd)} text="Add" type={AppConstant.POSITIVE} />
+                            <Button type="button" disabled={props.menuStore.menuAddLoading || (!props.menuStore.menuadd.name)}  onClick= { ()=>{props.menuStore.handleMenuAdd()}} text="Add" type={AppConstant.POSITIVE} />
                         </div>
                     </div>
                 </div>
