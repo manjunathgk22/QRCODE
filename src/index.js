@@ -8,7 +8,10 @@ import './sass/fonts.scss';
 import register from './registerServoceWorker'
 import {Provider} from "mobx-react";
 import LoginStore from './Stores/LoginStore'
-
+import BaseStore from './stores/BaseStore'
+import DashboardStore from './stores/dashboardStore';
+import QrcodeStore from './stores/QrcodeStore';
+import MenuStore from './stores/MenuStore';
 
 // Register SW
 if(process.env.NODE_ENV === 'production')
@@ -17,7 +20,12 @@ if(process.env.NODE_ENV === 'production')
 render(
   <HashRouter ref = {(navRef)=>{Navigation.setNavigator(navRef)}}>
     <Provider 
-    loginStore = {new LoginStore()}>
+    loginStore = {new LoginStore()}
+    baseStore = {new BaseStore()}
+    qrcodeStore = {new QrcodeStore()}
+    dashboardStore = {new DashboardStore()}
+    menuStore = {new MenuStore()}
+    >
       <App />
     </Provider>
   </HashRouter>,

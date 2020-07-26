@@ -1,4 +1,5 @@
 import {observable} from "mobx";
+import AppConstant from '../constant/AppConstant';
 
 class BaseStore {
     @observable isLoading = false;
@@ -6,6 +7,7 @@ class BaseStore {
     @observable showTryAgain = false;
     @observable errorText = "";
     static LOGINDATA = null;
+    @observable sidebar = AppConstant.SIDEBAR
 
     resetValues() {
         this.isLoading = false;

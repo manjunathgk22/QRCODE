@@ -1,0 +1,50 @@
+@import '../../sass/Base.scss';
+
+.menu-dashboard{
+    .menu-column{
+        max-height: calc(100vh - 250px);
+        overflow: auto;
+    }
+    .add-button{
+        border-radius: 4px;
+        padding: 5px 10px;
+        cursor: pointer;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        background-color: $bgGrey;
+        &:hover{
+            background-color: darken($bgGrey, 10%);
+        }
+    }
+    .menucard{
+        cursor: pointer;
+        position: relative;
+        &:hover{
+            background-color: darken($white, 5%);
+        }
+        &.active{
+            background-color: $green;
+            .text{
+                color: $white;
+            }
+            .eye-icon{
+                path{
+                    fill:$white;
+                }
+            }
+        }
+    }
+    .eye-icon{
+        position: absolute;
+        top: 3px;
+        right: 10px;
+        width: 18px;
+
+    }
+}
+.modal-wrapper{
+    min-width: 300px;
+    
+}

@@ -48,7 +48,16 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                loader: "babel-loader",
+                use:[{
+                    loader: 'string-replace-loader',
+                    options: {
+                        search: '__STATIC__',
+                        replace: process.env.NODE_ENV === 'development'? 'http://localhost:2017/':'prod here',
+                        flags: 'g'
+                    }
+                },{
+                    loader: "babel-loader",
+                }],
                 exclude: /node_modules/,
             },
             {
@@ -81,9 +90,13 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/,
+                test: /\.(png|jpe?g|gif)$/,
                 loader:
                     "file-loader?limit=10000&name=assets/[name].[contenthash].[ext]",
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
             },
         ],
     },

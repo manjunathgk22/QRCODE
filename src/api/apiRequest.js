@@ -3,7 +3,7 @@ import Axios from "axios";
 import AppUtility from '../util/AppUtility';
 
 const STATUS = {
-    SUCCESS: "success",
+    SUCCESS: 200,
     ERROR: "error",
   };
 
@@ -17,12 +17,23 @@ const STATUS = {
     "Content-Type": "application/json",
     "User-Agent": "okhttp",
   };
+
+  const imageUploadHeaders = {
+    "Content-Type": "multipart/form-data",
+    "User-Agent": "okhttp",
+  }
   const userApiClient = Axios.create({
     baseURL: Config.API_URL,
     headers: headers,
     // timeout: 3000,
   });
 
+const userApiClientUpload = Axios.create({
+    baseURL: Config.API_URL,
+    headers: imageUploadHeaders,
+    // timeout: 3000,
+  });
+  
   const callAPIs = async (apiMethodToCall)=> {
     try {
       let response = { ...(await apiMethodToCall) };
@@ -65,10 +76,90 @@ function loginSubmit(json){
     return userApiClient.post('public/login/', json)
 }
 
+function generateQrcode(json){
+  return userApiClient.post('private/qrcode/generate/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function getRestaurantDetails(){
+  return userApiClient.get('private/restaurant/getrestaurant', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function uploadImage (data){
+  return userApiClient.post('private/uploadStatic' ,data,  {headers: {
+    "Content-Type": "multipart/form-data",
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function postRestaurantDetail(data){
+  return userApiClient.put('private/restaurant/update', data, {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function loginSubmit(json){
+  return userApiClient.post('public/login/', json)
+}
+
+function getmenus(){
+  return userApiClient.get('private/menus/getmenus', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function createMenu(json){
+  return userApiClient.post('private/menu/create/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateMenu(json){
+  return userApiClient.put('private/menu/update/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function createMenuCategory(json){
+  return userApiClient.post('private/menucategory/create/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateMenuCategory(json){
+  return userApiClient.put('private/menucategory/update/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function createMenuItem(json){
+  return userApiClient.post('private/menuitem/create/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateMenuItem(json){
+  return userApiClient.put('private/menuitem/update/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function getQrcodes(){
+  return userApiClient.get('private/qrcode/getqrcodes', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
 
 export default {
   STATUS,
   callAPIs,
   apiDebounce,
   loginSubmit,
+  getRestaurantDetails,
+  uploadImage,
+  postRestaurantDetail,
+  generateQrcode,
+  getmenus,
+  createMenu,
+  getQrcodes,
+  createMenuCategory,
+  updateMenuCategory,
+  createMenuItem,
+  updateMenu,
+  updateMenuItem
 }

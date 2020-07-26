@@ -1,14 +1,18 @@
-// import BaseStore from '../Stores/BaseStore'
+import BaseStore from '../Stores/BaseStore'
 
-// const getToken = ()=>{
-//     if(BaseStore.LOGINDATA){
-//         return BaseStore.LOGINDATA.access_token
-//     }
-//     else{
-//         return ''
-//     }
-// }
+const getToken = ()=>{
+    if(localStorage.getItem('LOGINDATA')){
+        BaseStore.LOGINDATA = JSON.parse(localStorage.getItem('LOGINDATA'))
+    }
+    if(BaseStore.LOGINDATA){
+        // return BaseStore.LOGINDATA.access_token
+        return BaseStore.LOGINDATA.token
+    }
+    else{
+        return ''
+    }
+}
 
-// export default {
-//     getToken
-// }
+export default {
+    getToken
+}

@@ -4,7 +4,7 @@ import './style.scss';
 
 export default function Card(props) {
     return (
-        <div className={`card ${props.classname}`} style={props.style}>
+        <div className={`card ${props.classname}`} style={props.style} {...props}>
             {props.children}
         </div>
     )

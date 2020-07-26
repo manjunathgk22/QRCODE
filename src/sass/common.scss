@@ -15,6 +15,15 @@ body,html{
     height:100%;
     width: 100%;
 }
+.border-radius-sm{
+    border-radius: 4px;
+}
+.gray-bg{
+    background-color: $bgGrey;
+}
+.white-bg{
+    background-color: $white;
+}
 .flex{
     display: flex;
 }
@@ -29,6 +38,12 @@ body,html{
     justify-content: center;
     align-items: center;
 }
+.align-items-center{
+    align-items: center;
+}
+.padding-xs{
+    padding:5px;
+}
 .padding-md{
     padding: 15px;
 }
@@ -38,14 +53,29 @@ body,html{
 .padding-lg{
     padding: 30px;
 }
+.padding-bottom-sm{
+    padding-bottom: 10px;
+}
 .padding-bottom-lg{
     padding-bottom: 30;
+}
+.padding-top-lg{
+    padding-top: 30px;
 }
 .margin-top-lg{
     margin-top: 30px;
 }
 .margin-top-md{
     margin-top: 15px;
+}
+.margin-top-sm{
+    margin-top: 10px;
+}
+.margin-left-md{
+    margin-left: 15px;
+}
+.margin-left-lg{
+    margin-left: 30px;
 }
 .margin-bottom-lg{
     margin-bottom: 30px;
@@ -98,6 +128,12 @@ body,html{
 .no-top-margin{
     margin-top: 0;
 }
+.no-bottom-margin{
+    margin-bottom: 0;
+}
+.none{
+    display: none;
+}
 .no-vertical-margin{
     margin-top: 0;
     margin-bottom: 0;
@@ -132,4 +168,25 @@ body,html{
 }
 .brand-color-text{
     color: $purple;
+}
+.min-width-200{
+    min-width: 200px;
+}
+.min-width-150{
+    min-width: 150px;
+}
+.border-bottom{
+    border-bottom: 1px solid $borderColor;
+}
+.fit-content{
+    height: fit-content;
+}
+.shadow-light{
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+}
+.font-12{
+    font-size: 12px;
+}
+.text-white{
+    color: $white;
 }

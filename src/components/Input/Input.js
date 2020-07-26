@@ -9,12 +9,13 @@ export default function Input({
     rows=4,
     cols=50,
     bordered= false,
+    value='',
     ...props
 }) {
     return (
         <div className="button-wrapper">
             {type === "textArea" ? (
-                <textarea style={style}  placeholder={placeholder} rows={rows} cols={cols} onChange={onChange}/>
+                <textarea style={style}  placeholder={placeholder} value = {value} rows={rows} cols={cols} onChange={onChange}/>
             ) : (
                 <div>
                     <input
@@ -23,6 +24,7 @@ export default function Input({
                         onChange={onChange}
                         className={`effect-2 ${bordered? 'bordered':''}` }
                         style={style}
+                        value = {value}
                         {...props}
                     />
                     <span className="focus-border"></span>

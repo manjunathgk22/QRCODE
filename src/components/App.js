@@ -1,15 +1,31 @@
 import { Suspense, lazy, useEffect } from 'preact/compat';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import BaseStore from '../stores/BaseStore';
+import {inject} from 'mobx-react';
+import AppConstant from '../constant/AppConstant';
+import AppUtility from '../util/AppUtility';
+import Restaurant from './Restaurant/Restaurant';
+import Qrcodes from './Qrcodes/Qrcodes';
+import MenuDashboard from './MenuDashboard/MenuDashboard';
 const Login = lazy(() => import('./Login/Login'));
-const Dashboard = lazy(() => import('./Dashboard'));
+const Dashboard = lazy(() => import('./Dashboard/Dashboard'));
   
   //To check if the requested path needs authentication
   const AuthRoute = (props)=>{
-    
+
       if((!localStorage.getItem('LOGINDATA'))){
         return <Redirect to="/login" />
       }else{
+        
+        props.baseStore.sidebar = AppConstant.SIDEBAR.map(item=>{
+          item.isSelected = false
+          if(props.path == '/' && item.path === '/dashboard'){
+            item.isSelected = true
+          }else if (props.path === item.path){
+            item.isSelected = true
+          }
+          return item;
+        })
         if(props.path == '/'){
           return <Redirect to="/dashboard" />
         }
@@ -21,6 +37,7 @@ const Dashboard = lazy(() => import('./Dashboard'));
 const Main = (props) => {
   
   useEffect(() => {
+    
     if(localStorage.getItem('LOGINDATA')){
       BaseStore.LOGINDATA = JSON.parse(localStorage.getItem('LOGINDATA'))
     }
@@ -32,6 +49,10 @@ const Main = (props) => {
       <AuthRoute {...props} exact path='/' component={()=>{}}/>
       <Route {...props} exact path='/login' component={Login}/>   {/* Dont use AuthRoute here. Will lead to infinite loop */}
       <AuthRoute {...props} exact path='/dashboard' component={Dashboard}/>
+      <AuthRoute {...props} exact path='/qrcodes' component={Qrcodes}/>
+      <AuthRoute {...props} exact path='/menus' component={MenuDashboard}/>
+      <AuthRoute {...props} exact path='/orders' component={Dashboard}/>
+      <AuthRoute {...props} exact path='/restaurant' component={Restaurant}/>
       <AuthRoute path="/"  />
     </Switch>
     </Suspense>
@@ -39,4 +60,4 @@ const Main = (props) => {
   )
   }
 
-export default  (Main)
+export default  inject('baseStore')(Main)

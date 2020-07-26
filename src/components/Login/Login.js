@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import './style.scss'
-import BaseView from '../BaseView'
+import BaseView from '../Baseview/BaseView'
 import Input from  '../Input/Input'
 import Card from '../Card/Card';
 import Icon from '../../assets/qr_icon.png'
@@ -12,7 +12,7 @@ import Loader from '../Loader/Loader';
 
 function Login(props) {
     return(
-        <BaseView>
+        
             <Observer>
                 {()=>(
                     <div className="one-flex align-center full-height">
@@ -23,10 +23,10 @@ function Login(props) {
                         </div>
                         <form onSubmit={e => { e.preventDefault(); }} action="POST">
                             <div>
-                                <Input placeholder="Username" name="username" onChange={({target})=>{props.loginStore.errorMessage = '';props.loginStore.username = target.value}} style={{width:200}}/>
+                                <Input placeholder="Username" name="username" value={props.loginStore.username} onChange={({target})=>{props.loginStore.errorMessage = '';props.loginStore.username = target.value}} style={{width:200}}/>
                             </div>
                             <div className="margin-top-lg">
-                                <Input placeholder="Password" name="password" type="password" onChange={({target})=>{props.loginStore.errorMessage = '';props.loginStore.password = target.value}} style={{width:200}}/>
+                                <Input placeholder="Password" name="password" type="password" value={props.loginStore.password} onChange={({target})=>{props.loginStore.errorMessage = '';props.loginStore.password = target.value}} style={{width:200}}/>
                             </div>
                             <div className="margin-top-lg flex align-center">
                                 <Button type="button" disabled={props.loginStore.isLoading || (!props.loginStore.username || !props.loginStore.password)}  onClick= {apiRequest.apiDebounce(props.loginStore.handleLogin)} text="Submit" type={AppConstant.POSITIVE}/>
@@ -44,7 +44,7 @@ function Login(props) {
                 )}
             </Observer>
             
-        </BaseView>
+        
     )
     
 }

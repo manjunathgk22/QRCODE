@@ -2,6 +2,7 @@ import BaseStore from "./BaseStore";
 import {observable, action} from "mobx";
 import apiRequest from '../api/apiRequest';
 import Navigation from '../util/Navigation';
+import AppUtility from '../util/AppUtility';
 
 export default class LoginStore extends BaseStore{
     @observable isLoading = false;

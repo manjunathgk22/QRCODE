@@ -1,0 +1,12 @@
+@import '../../sass/Base.scss';
+
+.z-index-100{
+    z-index: 100;
+}
+.overlay{
+    background-color: $modalBg;
+}
+.modal{
+    top:0;
+    left: 0;
+}

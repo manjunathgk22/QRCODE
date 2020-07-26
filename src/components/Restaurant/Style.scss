@@ -1,0 +1,49 @@
+@import '../../sass/Base.scss';
+
+.restaurant-wrapper{
+    .upload-style{
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 120px;
+        width: 120px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        z-index: 0;
+    }
+    .left{
+        left: 0;
+        right: 0;
+    }
+    .upload{
+        opacity: 0;
+        height: 120px;
+        width: 120px;
+        z-index: 1;
+        cursor: pointer;
+    }
+    .logo-image{
+        height:120px;
+        width:120px;
+        border-radius: 50%;
+        &~.camera-icon{
+            position: absolute;
+            top: 0;
+            right: -10px;
+            height: 24px;
+            width: 24px;
+        }
+    }
+    
+    .logo{
+        width: 120px;
+        height: 120px;
+        display: none;
+    }
+    .gallery-image{
+        height:120px;
+        width:120px;
+        border-radius: 4px;
+    }
+
+}
