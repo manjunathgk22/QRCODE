@@ -8,6 +8,7 @@ class BaseStore {
     @observable errorText = "";
     static LOGINDATA = null;
     @observable sidebar = AppConstant.SIDEBAR
+    @observable toastMessage = []
 
     resetValues() {
         this.isLoading = false;

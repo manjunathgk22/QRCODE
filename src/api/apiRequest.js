@@ -139,8 +139,75 @@ function updateMenuItem(json){
     Authorization: "Bearer " + AppUtility.getToken(),
     }})
 }
+
+
+
+
+function getservices(){
+  return userApiClient.get('private/services/getservices', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function createService(json){
+  return userApiClient.post('private/service/create/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateService(json){
+  return userApiClient.put('private/service/update/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function createServiceCategory(json){
+  return userApiClient.post('private/servicecategory/create/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateServiceCategory(json){
+  return userApiClient.put('private/servicecategory/update/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function createServiceItem(json){
+  return userApiClient.post('private/serviceitem/create/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateServiceItem(json){
+  return userApiClient.put('private/serviceitem/update/', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function getAllCurrentOrders(){
+  return userApiClient.get('private/order/getorders', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
 function getQrcodes(){
   return userApiClient.get('private/qrcode/getqrcodes', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function getDetailedQrcodes(){
+  return userApiClient.get('private/qrcode/getDetailedQrcodes', {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function updateQrcodeMenu(json){
+  return userApiClient.put('private/qrcode/updateMenu', json, {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function updateQrcodeService(json){
+  return userApiClient.put('private/qrcode/updateService', json, {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function subscribe(json){
+  return userApiClient.post('private/subscribe', json,{headers: {
     Authorization: "Bearer " + AppUtility.getToken(),
     }})
 }
@@ -157,9 +224,21 @@ export default {
   getmenus,
   createMenu,
   getQrcodes,
+  getDetailedQrcodes,
   createMenuCategory,
   updateMenuCategory,
   createMenuItem,
+  getservices,
+  createService,
   updateMenu,
-  updateMenuItem
+  updateMenuItem,
+  createServiceCategory,
+  updateServiceCategory,
+  createServiceItem,
+  updateService,
+  updateServiceItem,
+  getAllCurrentOrders,
+  subscribe,
+  updateQrcodeMenu,
+  updateQrcodeService
 }

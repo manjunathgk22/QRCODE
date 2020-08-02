@@ -2,18 +2,22 @@ import { h, Component } from 'preact';
 import './Style.scss'
 import {useEffect, useState} from 'preact/hooks';
 
-export default function Dropdown({options=[], onClick=()=>{}}) {
+export default function Dropdown({options=[], onClick=()=>{}, selected}) {
 
-    const [selectedOption, setselectedOption] = useState(10);
+    const [selectedOption, setselectedOption] = useState(selected);
     useEffect(() => {
-        options.some(item =>{
-            if(item.selected){
-                setselectedOption(item.name)
-                return true;
-            }
-            return false;
-        })
+        if(!selected)
+            options.some(item =>{
+                if(item.selected){
+                    setselectedOption(item.name)
+                    return true;
+                }
+                return false;
+            })
     }, [options])
+    useEffect(() => {
+        setselectedOption(selected)
+    }, [selected])
     return (
         <div className="dropdown">
             <button className="dropbtn">{`${selectedOption} `}</button>
