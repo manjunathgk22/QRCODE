@@ -153,9 +153,9 @@ export default class DashboardStore extends BaseStore{
                 },
             ]
         }
-        // if(!JSON.parse(localStorage.LOGINDATA).user.notif){
-        //     subscribeApi()
-        // }
+        if(!JSON.parse(localStorage.LOGINDATA).user.notif){
+            subscribeApi()
+        }
     }
     
 }

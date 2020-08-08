@@ -14,14 +14,13 @@ module.exports = merge(common, {
             swSrc: path.join(process.cwd(), '/src/sworker.js'),
             swDest: 'wi-sw.js',
             exclude: [
-                // /[a-zA-Z0-9\.]*/
-                /\.map$/,
-                /manifest$/,
-                /\.htaccess$/,
-                /service-worker\.js$/,
-                /sw\.js$/,
-                /\.js$/,
-                
+                // /\.map$/,
+                // /manifest$/,
+                // /\.htaccess$/,
+                // /service-worker\.js$/,
+                // /sw\.js$/,
+                // /\.js$/,
+                /[a-zA-z0-9.]*/
             ],
         }),
     ]

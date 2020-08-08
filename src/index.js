@@ -14,6 +14,7 @@ import QrcodeStore from './stores/QrcodeStore';
 import MenuStore from './stores/MenuStore';
 import ServiceStore from './stores/ServiceStore';
 import OrderStore from './stores/OrderStore'
+import BillStore from './stores/BillStore'
 import registersw from './notif';
 // Register SW
 // if(process.env.NODE_ENV === 'production')
@@ -34,6 +35,7 @@ render(
     menuStore = {new MenuStore()}
     serviceStore = {new ServiceStore()}
     orderStore = {new OrderStore()}
+    billStore = {new BillStore}
     >
       <App />
     </Provider>

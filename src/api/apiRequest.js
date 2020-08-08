@@ -206,8 +206,25 @@ function updateQrcodeService(json){
     }})
 }
 
+function updateOrderStatus(json){
+  return userApiClient.put('private/order/update', json, {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
 function subscribe(json){
   return userApiClient.post('private/subscribe', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+function createBill(json){
+  return userApiClient.post('private/bill/create', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+}
+
+function getAllBills(){
+  return userApiClient.get('private/bill/getAllBills', {headers: {
     Authorization: "Bearer " + AppUtility.getToken(),
     }})
 }
@@ -240,5 +257,8 @@ export default {
   getAllCurrentOrders,
   subscribe,
   updateQrcodeMenu,
-  updateQrcodeService
+  updateQrcodeService,
+  updateOrderStatus,
+  createBill,
+  getAllBills
 }

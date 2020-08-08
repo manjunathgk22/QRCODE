@@ -13,6 +13,7 @@ import Orders from './Orders/Orders';
 import check from '../assets/check.png'
 import Toast from './Toast/Toast';
 import notifToast from '../notifToast/notifToast';
+import Bills from './Bills/Bills';
 const Login = lazy(() => import('./Login/Login'));
 const Dashboard = lazy(() => import('./Dashboard/Dashboard'));
   
@@ -65,6 +66,7 @@ const Main = (props) => {
       <AuthRoute {...props} exact path='/menus' component={MenuDashboard}/>
       <AuthRoute {...props} exact path='/services' component={ServiceDashboard}/>
       <AuthRoute {...props} exact path='/orders' component={Orders}/>
+      <AuthRoute {...props} exact path='/bills' component={Bills}/>
       <AuthRoute {...props} exact path='/restaurant' component={Restaurant}/>
       <AuthRoute path="/"  />
     </Switch>

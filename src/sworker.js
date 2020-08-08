@@ -1,4 +1,3 @@
-const {subscribeApi} = require('./notif');
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
@@ -25,20 +24,20 @@ self.addEventListener('push', (event) => {
       }
     });
 });
-// self.addEventListener('pushsubscriptionchange', function(event) {
-//   console.log('Subscription expired');
-//   // self.clients.matchAll({
-//   //   includeUncontrolled: false,
-//   //   type: 'window',
-//   // }).then((clients) => {
-//   //   if (clients && clients.length) {
-//   //     // Send a response - the clients
-//   //     // array is ordered by last focused
-//   //     clients[0].postMessage({
-//   //       data:{action:'pushsubscriptionchange'}
-//   //     });
-//   //   }
-//   // });
-// })
+self.addEventListener('pushsubscriptionchange', function(event) {
+  console.log('Subscription expired');
+  self.clients.matchAll({
+    includeUncontrolled: false,
+    type: 'window',
+  }).then((clients) => {
+    if (clients && clients.length) {
+      // Send a response - the clients
+      // array is ordered by last focused
+      clients[0].postMessage({
+        data:{action:'pushsubscriptionchange'}
+      });
+    }
+  });
+})
 
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
