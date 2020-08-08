@@ -12,6 +12,7 @@ import BaseStore from './stores/BaseStore'
 import DashboardStore from './stores/dashboardStore';
 import QrcodeStore from './stores/QrcodeStore';
 import MenuStore from './stores/MenuStore';
+import customerStore from "./stores/customerStore";
 import ServiceStore from './stores/ServiceStore';
 import OrderStore from './stores/OrderStore'
 import BillStore from './stores/BillStore'
@@ -33,6 +34,7 @@ render(
     qrcodeStore = {new QrcodeStore()}
     dashboardStore = {new DashboardStore()}
     menuStore = {new MenuStore()}
+    customerStore ={new customerStore()}
     serviceStore = {new ServiceStore()}
     orderStore = {new OrderStore()}
     billStore = {new BillStore}

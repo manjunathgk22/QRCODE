@@ -1,0 +1,31 @@
+@import '../../sass/Base.scss';
+
+
+    #cost{
+        margin-right: 10px;
+        margin-top: 6px;
+    }
+#checkoutbut{
+    color: white;
+    background-color: #60b246;
+}
+
+.glow-on-hover {
+    width: 170px;
+    padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+    background-color: transparent;
+    border: 3px solid #00d7c3;
+    border-radius: 50px;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    color: #00d7c3;
+  }
+  .glow-on-hover:hover {
+    box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;
+    border: 3px solid #00d7c3;
+  }
