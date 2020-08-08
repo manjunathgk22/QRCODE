@@ -7,13 +7,17 @@ import AppUtility from '../util/AppUtility';
 import Restaurant from './Restaurant/Restaurant';
 import Qrcodes from './Qrcodes/Qrcodes';
 import MenuDashboard from './MenuDashboard/MenuDashboard';
+import Test from './Test';
+import CustomerDashboard from './Customer/CustomerDashboard';
+import CustomerMenu from './Customer/CustomerMenu';
+import CartDetails from './CartModel/CartDetails';
 const Login = lazy(() => import('./Login/Login'));
 const Dashboard = lazy(() => import('./Dashboard/Dashboard'));
   
   //To check if the requested path needs authentication
   const AuthRoute = (props)=>{
 
-      if((!localStorage.getItem('LOGINDATA'))){
+      if(false &&  (!localStorage.getItem('LOGINDATA'))){
         return <Redirect to="/login" />
       }else{
         
@@ -53,6 +57,9 @@ const Main = (props) => {
       <AuthRoute {...props} exact path='/menus' component={MenuDashboard}/>
       <AuthRoute {...props} exact path='/orders' component={Dashboard}/>
       <AuthRoute {...props} exact path='/restaurant' component={Restaurant}/>
+      <AuthRoute {...props} exact path='/customer/dashboard' component={CustomerDashboard}/>
+      <AuthRoute {...props} exact path='/customer/menu' component={CustomerMenu}/>
+      <AuthRoute {...props} exact path='/customer/cartmodel' component={CartDetails}/>
       <AuthRoute path="/"  />
     </Switch>
     </Suspense>

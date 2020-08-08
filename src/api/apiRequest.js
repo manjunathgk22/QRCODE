@@ -143,6 +143,18 @@ function getQrcodes(){
   return userApiClient.get('private/qrcode/getqrcodes', {headers: {
     Authorization: "Bearer " + AppUtility.getToken(),
     }})
+    
+}
+function getMenudetails(param){
+  return userApiClient.get(`public/getdetails?qrcode=${param}`, {headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
+    
+}
+function checkoutOrder(json){
+  return userApiClient.post('private/order/create', json,{headers: {
+    Authorization: "Bearer " + AppUtility.getToken(),
+    }})
 }
 
 export default {
@@ -161,5 +173,7 @@ export default {
   updateMenuCategory,
   createMenuItem,
   updateMenu,
-  updateMenuItem
+  updateMenuItem,
+  getMenudetails,
+  checkoutOrder
 }

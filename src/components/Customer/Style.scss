@@ -1,0 +1,14 @@
+@import '../../sass/Base.scss';
+
+.CustomerDashboard{
+    text-align: center;
+    width: 100%;
+    height: 50%;
+}
+
+.customermenu{
+    background-color: white;
+    #cart{
+        justify-content: flex-end;
+    }
+}

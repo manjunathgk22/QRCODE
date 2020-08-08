@@ -12,7 +12,7 @@ import BaseStore from './stores/BaseStore'
 import DashboardStore from './stores/dashboardStore';
 import QrcodeStore from './stores/QrcodeStore';
 import MenuStore from './stores/MenuStore';
-
+import customerStore from "./stores/customerStore";
 // Register SW
 if(process.env.NODE_ENV === 'production')
   register(process.env)
@@ -25,6 +25,7 @@ render(
     qrcodeStore = {new QrcodeStore()}
     dashboardStore = {new DashboardStore()}
     menuStore = {new MenuStore()}
+    customerStore ={new customerStore()}
     >
       <App />
     </Provider>

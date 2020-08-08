@@ -1,0 +1,77 @@
+@import '../../sass/Base.scss';
+
+.menu-item-wrapper{
+    form {
+        width: 300px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 50px;
+      }
+      .zoom {
+        padding: 50px;
+        background-color: green;
+        transition: transform .2s;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+      }
+      
+      .zoom:hover {
+        -ms-transform: scale(1.5); /* IE 9 */
+        -webkit-transform: scale(1.5); /* Safari 3-8 */
+        transform: scale(1.5); 
+      }
+
+}
+
+.item-quantity-wrapper{
+    //border: 1px solid #0cb88f;
+    color: white;
+    height:33px;
+    margin-left: 50px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+    .value-button {
+        display: inline-block;
+        border: 1px solid  #0cb88f;
+        margin: 0px;
+        width: 30px;
+        height: 35px;
+        background-color: #0cb88f;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        //padding: 11px 0;
+        //background:  hsl(166, 88%, 38%);
+        font-size: 23px;
+        
+      }
+      
+      .value-button:hover {
+        cursor: pointer;
+      }
+     
+       #decrease {
+        margin-right: -4px;
+        border-radius: 4px 0 0 4px;
+      }
+      
+       #increase {
+        margin-left: -4px;
+        border-radius: 0 4px 4px 0;
+      }
+        
+      input#number {
+        text-align: center;
+        border: none;
+        border: 1px solid  #0cb88f;
+        //border-top: 1px solid #0cb88f;
+        //border-bottom: 1px solid  #0cb88f;
+        margin: 0px;
+        width: 30px;
+        height: 34px;  
+        background-color: #0cb88f; 
+        color: white;
+       
+        
+      }
+}
