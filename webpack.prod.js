@@ -4,7 +4,7 @@ const common = require("./webpack.common.js");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const BrotliPlugin = require("brotli-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
-const { GenerateSW } = require("workbox-webpack-plugin");
+const { GenerateSW, InjectManifest } = require("workbox-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 module.exports = merge(common, {
@@ -24,88 +24,99 @@ module.exports = merge(common, {
             threshold: 10240,
             minRatio: 0.7,
         }),
-        new GenerateSW({
-            clientsClaim: true,
-            skipWaiting: true,
-            exclude: [/\.ico$/],
-            swDest: "wi-sw.js",
-            runtimeCaching: [
-                {
-                    urlPattern: /assets\/*/,
-                    handler: "CacheFirst",
-                    options: {
-                        cacheName: "wrkind-assets",
-                        fetchOptions: {
-                            mode: "cors",
-                        },
-                        expiration: {
-                            maxEntries: 50,
-                            maxAgeSeconds: 365 * 24 * 60 * 60, // 1year
-                        },
-                        cacheableResponse: {
-                            statuses: [0, 200],
-                        },
-                    },
-                },
-                {
-                    urlPattern: /.*(\.)(js)/,
-                    handler: "CacheFirst",
-                    options: {
-                        cacheName: "wrkind-js",
-                        fetchOptions: {
-                            mode: "cors",
-                        },
-                        expiration: {
-                            maxEntries: 50,
-                            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
-                        },
-                        cacheableResponse: {
-                            statuses: [0, 200],
-                        },
-                    },
-                },
-                {
-                    urlPattern: /.*(\.)(css)/,
-                    handler: "CacheFirst",
-                    options: {
-                        cacheName: "wrkind-css",
-                        fetchOptions: {
-                            mode: "cors",
-                        },
-                        expiration: {
-                            maxEntries: 50,
-                            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
-                        },
-                        cacheableResponse: {
-                            statuses: [0, 200],
-                        },
-                    },
-                },
-                {
-                    urlPattern: /api/,
-                    // Apply a network-first strategy.
-                    handler: "NetworkFirst",
-                    options: {
-                        // Fall back to the cache after 5 seconds.
-                        networkTimeoutSeconds: 5,
-                        // Use a custom cache name for this route.
-                        cacheName: "wrkind-api",
-                        // Configure custom cache expiration.
-                        expiration: {
-                            maxEntries: 10,
-                            maxAgeSeconds: 86400,
-                        },
-                        // Configure which responses are considered cacheable.
-                        cacheableResponse: {
-                            statuses: [0, 200],
-                        },
-                        matchOptions: {
-                            ignoreSearch: true,
-                        },
-                    },
-                },
+        // new GenerateSW({
+        //     clientsClaim: true,
+        //     skipWaiting: true,
+        //     exclude: [/\.ico$/],
+        //     swDest: "wi-sw.js",
+        //     runtimeCaching: [
+        //         {
+        //             urlPattern: /assets\/*/,
+        //             handler: "CacheFirst",
+        //             options: {
+        //                 cacheName: "wrkind-assets",
+        //                 fetchOptions: {
+        //                     mode: "cors",
+        //                 },
+        //                 expiration: {
+        //                     maxEntries: 50,
+        //                     maxAgeSeconds: 365 * 24 * 60 * 60, // 1year
+        //                 },
+        //                 cacheableResponse: {
+        //                     statuses: [0, 200],
+        //                 },
+        //             },
+        //         },
+        //         {
+        //             urlPattern: /.*(\.)(js)/,
+        //             handler: "CacheFirst",
+        //             options: {
+        //                 cacheName: "wrkind-js",
+        //                 fetchOptions: {
+        //                     mode: "cors",
+        //                 },
+        //                 expiration: {
+        //                     maxEntries: 50,
+        //                     maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        //                 },
+        //                 cacheableResponse: {
+        //                     statuses: [0, 200],
+        //                 },
+        //             },
+        //         },
+        //         {
+        //             urlPattern: /.*(\.)(css)/,
+        //             handler: "CacheFirst",
+        //             options: {
+        //                 cacheName: "wrkind-css",
+        //                 fetchOptions: {
+        //                     mode: "cors",
+        //                 },
+        //                 expiration: {
+        //                     maxEntries: 50,
+        //                     maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        //                 },
+        //                 cacheableResponse: {
+        //                     statuses: [0, 200],
+        //                 },
+        //             },
+        //         },
+        //         {
+        //             urlPattern: /api/,
+        //             // Apply a network-first strategy.
+        //             handler: "NetworkFirst",
+        //             options: {
+        //                 // Fall back to the cache after 5 seconds.
+        //                 networkTimeoutSeconds: 5,
+        //                 // Use a custom cache name for this route.
+        //                 cacheName: "wrkind-api",
+        //                 // Configure custom cache expiration.
+        //                 expiration: {
+        //                     maxEntries: 10,
+        //                     maxAgeSeconds: 86400,
+        //                 },
+        //                 // Configure which responses are considered cacheable.
+        //                 cacheableResponse: {
+        //                     statuses: [0, 200],
+        //                 },
+        //                 matchOptions: {
+        //                     ignoreSearch: true,
+        //                 },
+        //             },
+        //         },
+        //     ],
+        //     cleanupOutdatedCaches: true,
+        // }),
+        new InjectManifest({
+            swSrc: path.join(process.cwd(), '/src/sworker.js'),
+            swDest: 'wi-sw.js',
+            exclude: [
+                /\.map$/,
+                /manifest$/,
+                /\.htaccess$/,
+                /sworker\.js$/,
+                /\.js$/,
             ],
-            cleanupOutdatedCaches: true,
         }),
         new WebpackPwaManifest({
             name: "Workindia",

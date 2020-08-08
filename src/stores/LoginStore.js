@@ -3,6 +3,7 @@ import {observable, action} from "mobx";
 import apiRequest from '../api/apiRequest';
 import Navigation from '../util/Navigation';
 import AppUtility from '../util/AppUtility';
+import {subscribeApi} from '../notif';
 
 export default class LoginStore extends BaseStore{
     @observable isLoading = false;
@@ -29,6 +30,7 @@ export default class LoginStore extends BaseStore{
             BaseStore.LOGINDATA = response.data;
             localStorage.setItem('LOGINDATA', JSON.stringify(response.data))
             Navigation.replace('/')
+            subscribeApi()
         }else{
             BaseStore.LOGINDATA = null
             localStorage.removeItem('LOGINDATA')

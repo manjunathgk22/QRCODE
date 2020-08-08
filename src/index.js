@@ -13,10 +13,19 @@ import DashboardStore from './stores/dashboardStore';
 import QrcodeStore from './stores/QrcodeStore';
 import MenuStore from './stores/MenuStore';
 import customerStore from "./stores/customerStore";
+import ServiceStore from './stores/ServiceStore';
+import OrderStore from './stores/OrderStore'
+import BillStore from './stores/BillStore'
+import registersw from './notif';
 // Register SW
-if(process.env.NODE_ENV === 'production')
-  register(process.env)
+// if(process.env.NODE_ENV === 'production')
+//   register(process.env)
+if ("serviceWorker" in navigator) {
+  registersw();
+}
 
+
+Notification.requestPermission()
 render(
   <HashRouter ref = {(navRef)=>{Navigation.setNavigator(navRef)}}>
     <Provider 
@@ -26,6 +35,9 @@ render(
     dashboardStore = {new DashboardStore()}
     menuStore = {new MenuStore()}
     customerStore ={new customerStore()}
+    serviceStore = {new ServiceStore()}
+    orderStore = {new OrderStore()}
+    billStore = {new BillStore}
     >
       <App />
     </Provider>

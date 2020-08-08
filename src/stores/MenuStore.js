@@ -3,8 +3,8 @@ import {observable, action} from "mobx";
 import apiRequest from '../api/apiRequest';
 import Navigation from '../util/Navigation';
 import AppUtility from '../util/AppUtility';
-import check from '../assets/check.svg'
-import error from '../assets/error.svg'
+import check from '../assets/check.png'
+import error from '../assets/error.png'
 export default class MenuStore extends BaseStore{
     @observable isLoading = false;
     @observable username = '';

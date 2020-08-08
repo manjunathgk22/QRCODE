@@ -1,1 +1,16 @@
 @import '../../sass/Base.scss';
+.qrcode-wrapper{
+    .qrcode{
+        flex-basis: 31%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        border:2px solid $green;
+        padding: 10px;
+        border-radius: 4px;
+        img{
+            height: 200px;
+            width: auto;
+        }
+    }
+}

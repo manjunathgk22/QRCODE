@@ -2,8 +2,9 @@ import BaseStore from "./BaseStore";
 import {observable, action} from "mobx";
 import apiRequest from '../api/apiRequest';
 import Navigation from '../util/Navigation';
-import check from '../assets/check.svg'
-import error from '../assets/error.svg'
+import check from '../assets/check.png'
+import error from '../assets/error.png'
+import {checkAndRequestNotif, subscribeApi} from '../notif';
 
 export default class DashboardStore extends BaseStore{
     @observable isLoading = false;
@@ -139,5 +140,22 @@ export default class DashboardStore extends BaseStore{
         
     }
     
+    @action handleNotif = async()=>{
+        const notifStatus = checkAndRequestNotif();
+        if(notifStatus === 'DENIED'){
+            this.toastMessage = [
+                {
+                    id: Date.now(),
+                    title: "Notifications blocked",
+                    description: "Notifications blocked. Please enable them. ",
+                    backgroundColor: "#fd3753",
+                    icon: error,
+                },
+            ]
+        }
+        if(!JSON.parse(localStorage.LOGINDATA).user.notif){
+            subscribeApi()
+        }
+    }
     
 }

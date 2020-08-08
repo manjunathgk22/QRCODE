@@ -12,6 +12,7 @@ import MenuCategoryAddPopup from './MenuCategoryAddPopup';
 import MenuItemAddPopup from './MenuItemAddPopup';
 import MenuCategoryShowPopup from './MenuCategoryShowPopup';
 import MenuItemShowPopup from './MenuItemShowPopup';
+import MenuShowPopup from './MenuShowPopup'
 const MenuDashboard = (props) => {
     useEffect(() => {
         props.menuStore.qrstoreRef = props.qrcodeStore
@@ -55,7 +56,7 @@ const MenuDashboard = (props) => {
                                     <div className="menu-column">
                                         
                                     {
-                                        props.menuStore.menuData.length && props.menuStore.menuData[props.menuStore.selectedMenuIndex] && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories.map((menuCategory, index) =><Card onClick={()=>{props.menuStore.handleCardClick("MENUCATEGORY", index)}} classname={`padding-md margin-bottom-md shadow-light menucard ${index === props.menuStore.selectedMenuCategoryIndex? 'active':''}`}>
+                                        props.menuStore.menuData.length && props.menuStore.menuData[props.menuStore.selectedMenuIndex] && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories.length ? props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories.map((menuCategory, index) =><Card onClick={()=>{props.menuStore.handleCardClick("MENUCATEGORY", index)}} classname={`padding-md margin-bottom-md shadow-light menucard ${index === props.menuStore.selectedMenuCategoryIndex? 'active':''}`}>
                                             <div className="flex space-between margin-top-sm ">
                                                 <Eye onClick={()=>{props.menuStore.handleShowMenuCategoryPopup(index)}} className="eye-icon" />
                                                 <div className="text">
@@ -66,7 +67,7 @@ const MenuDashboard = (props) => {
                                                     
                                                 </span>
                                             </div>
-                                        </Card>)
+                                        </Card>) : null
                                     }
                                     </div>
                                     
@@ -76,14 +77,14 @@ const MenuDashboard = (props) => {
                                     <p className="add-button no-bottom-margin text-light" onClick={()=>{props.menuStore.menuaddItem = {};  props.menuStore.showMenuItemAddPopup = true}}> <span className="text-light" style={{fontSize:20}}>+</span> Add Menu Item</p>
                                     <div className="menu-column">
                                     {
-                                        props.menuStore.menuData.length && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories.length &&  props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems.map((menuItem, index) =><Card onClick={()=>{props.menuStore.handleCardClick('MENUITEM', index)}} classname={`padding-md margin-bottom-md shadow-light menucard ${menuItem.selected? 'active':''}`}>
+                                        props.menuStore.menuData.length && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories.length &&  props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems && props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems ? props.menuStore.menuData[props.menuStore.selectedMenuIndex].menucategories[props.menuStore.selectedMenuCategoryIndex].menuitems.map((menuItem, index) =><Card onClick={()=>{props.menuStore.handleCardClick('MENUITEM', index)}} classname={`padding-md margin-bottom-md shadow-light menucard ${menuItem.selected? 'active':''}`}>
                                             <div className="flex space-between margin-top-sm ">
                                                 <Eye onClick={()=>{props.menuStore.handleShowMenuItemPopup(index)}} className="eye-icon" />
                                                 <div className="text">
                                                     {menuItem.name}
                                                 </div>
                                             </div>
-                                        </Card>)
+                                        </Card>) : null
                                     }
                                     </div>
                                     
@@ -102,7 +103,7 @@ const MenuDashboard = (props) => {
                     {props.menuStore.showMenuItemAddPopup?<MenuItemAddPopup {...props} />:null}
 
                     {/* MENU SHOW POPUP */}
-                    {props.menuStore.showMenuShowPopup ?<MenuAddPopup isShowPopup={true} {...props}/>:null}
+                    {props.menuStore.showMenuShowPopup ?<MenuShowPopup isShowPopup={true} {...props}/>:null}
 
                     {/* MENU CATEGORY SHOW POPUP */}
                     {props.menuStore.showMenuCategoryShowPopup ?<MenuCategoryShowPopup isShowPopup={true} {...props}/>:null}
